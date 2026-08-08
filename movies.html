@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies — CinemaHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="navbar-logo">CinemaHub</a>
+      <div class="navbar-links">
+        <a href="movies.html">Movies</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="login.html">Log In</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <h1 class="font-display section-title">Browse Movies</h1>
+
+      <div class="filters-bar">
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Search movies…"
+        />
+
+        <select id="genre-select" class="filter-select">
+          <option value="">All Genres</option>
+        </select>
+
+        <select id="sort-select" class="filter-select">
+          <option value="popularity.desc">Most Popular</option>
+          <option value="vote_average.desc">Highest Rated</option>
+          <option value="release_date.desc">Newest</option>
+        </select>
+      </div>
+
+      <div class="movie-grid" id="movies-grid"></div>
+
+      <div class="load-more-wrap">
+        <button id="load-more-btn" class="btn btn-secondary">Load More</button>
+      </div>
+    </main>
+
+    <script type="module" src="js/pages/movies.js"></script>
+  </body>
+</html>
