@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #0b0d12;
+  --surface: #161923;
+  --surface-raised: #1d212d;
+  --border: #262b38;
+
+  --accent: #e8a33d;
+  --accent-dim: #b57e2c;
+
+  --text: #ededf0;
+  --text-muted: #8b8fa3;
+  --text-faint: #565b6e;
+
+  --seat-available: #2e3344;
+  --seat-selected: #e8a33d;
+  --seat-occupied: #c0392b;
+  --seat-vip: #9b6bd6;
+
+  --error: #e05a4e;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-3xl: clamp(3rem, 2.4rem + 3vw, 5rem);
+
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius: 6px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
