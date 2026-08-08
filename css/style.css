@@ -70,3 +70,49 @@ a {
   font-family: var(--font-display);
   letter-spacing: 0.02em;
 }
+
+/* ---- Navbar ---- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  background: linear-gradient(
+    180deg,
+    rgba(11, 13, 18, 0.95),
+    rgba(11, 13, 18, 0.7)
+  );
+  backdrop-filter: blur(6px);
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    padding: var(--space-4) var(--space-8);
+  }
+}
+
+.navbar-logo {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--accent);
+}
+
+.navbar-links {
+  display: none;
+  gap: var(--space-6);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .navbar-links {
+    display: flex;
+  }
+}
+
+.navbar-links a:hover {
+  color: var(--accent);
+}
