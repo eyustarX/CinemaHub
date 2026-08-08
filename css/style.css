@@ -85,6 +85,8 @@ a {
     rgba(11, 13, 18, 0.95),
     rgba(11, 13, 18, 0.7)
   );
+  -webkit-backdrop-filter: blur(6px);
+  -moz-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
 
@@ -115,4 +117,55 @@ a {
 
 .navbar-links a:hover {
   color: var(--accent);
+}
+
+/* ---- Hero ---- */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface);
+  padding: var(--space-8) var(--space-4) var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-8) var(--space-8) var(--space-8);
+    min-height: 70vh;
+  }
+}
+
+.hero-content {
+  max-width: 640px;
+}
+
+.hero-title {
+  font-size: var(--text-3xl);
+}
+
+.hero-overview {
+  color: var(--text-muted);
+  margin-block: var(--space-4);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: background-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #17140c;
+}
+
+.btn-primary:hover {
+  background: #f0af52;
 }
