@@ -170,6 +170,17 @@ a {
   background: #f0af52;
 }
 
+.btn-secondary {
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+  border-color: var(--accent-dim);
+}
+
 /* ---- Layout ---- */
 .container {
   max-width: 1200px;
