@@ -151,7 +151,7 @@ continueBtn.addEventListener("click", () => {
     showtimeTime: selection.showtimeTime,
   });
 
-  alert("Saved! Seat selection comes next.");
+  window.location.href = "seats.html";
 });
 
 init();
