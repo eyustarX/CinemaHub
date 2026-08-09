@@ -29,8 +29,8 @@ async function handleRegister() {
   if (!name) {
     showFieldError("name", "Name is required.");
     isValid = false;
-  } else if (name.length < 2) {
-    showFieldError("name", "Name must be at least 2 characters.");
+  } else if (name.length < 3) {
+    showFieldError("name", "Name must be at least 3 characters.");
     isValid = false;
   } else if (!namePattern.test(name)) {
     showFieldError(
