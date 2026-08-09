@@ -1,3 +1,4 @@
+import "../utils/navbar.js";
 import { getPopularMovies, posterUrl, backdropUrl } from "../api/tmdb.js";
 
 const hero = document.getElementById("hero");

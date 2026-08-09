@@ -1,3 +1,4 @@
+import "../utils/navbar.js";
 import {
   getGenres,
   discoverMovies,

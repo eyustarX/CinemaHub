@@ -1,3 +1,4 @@
+import "../utils/navbar.js";
 import { getMovieDetails, posterUrl, backdropUrl } from "../api/tmdb.js";
 
 const root = document.getElementById("movie-detail-root");
