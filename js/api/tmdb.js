@@ -53,3 +53,9 @@ export async function searchMovies(query, page = 1) {
   const data = await tmdbFetch("/search/movie", { query, page });
   return { results: data.results, totalPages: data.total_pages };
 }
+
+export async function getMovieDetails(movieId) {
+  return tmdbFetch(`/movie/${movieId}`, {
+    append_to_response: "videos,credits",
+  });
+}
