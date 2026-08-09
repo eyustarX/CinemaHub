@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In — CinemaHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="navbar-logo">CinemaHub</a>
+    </nav>
+
+    <main class="container auth-page">
+      <div class="auth-card card">
+        <h1 class="font-display">Log In</h1>
+
+        <div class="form-group">
+          <label for="email-input">Email</label>
+          <input type="email" id="email-input" required />
+          <p class="field-error" id="email-error" hidden></p>
+        </div>
+
+        <div class="form-group">
+          <label for="password-input">Password</label>
+          <input type="password" id="password-input" required />
+          <p class="field-error" id="password-error" hidden></p>
+        </div>
+
+        <p id="auth-error" class="auth-error" hidden></p>
+
+        <button id="login-btn" class="btn btn-primary auth-submit">
+          Log In
+        </button>
+
+        <p class="auth-switch text-muted">
+          Don't have an account? <a href="register.html">Create one</a>
+        </p>
+      </div>
+    </main>
+
+    <script type="module" src="js/pages/login.js"></script>
+  </body>
+</html>
