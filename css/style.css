@@ -465,3 +465,9 @@ a {
 .auth-switch a {
   color: var(--accent);
 }
+
+.field-error {
+  color: var(--error);
+  font-size: 0.8125rem;
+  margin-top: var(--space-2);
+}
