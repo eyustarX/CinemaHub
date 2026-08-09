@@ -39,7 +39,7 @@ function render(movie) {
           <span>${movie.genres.map((g) => g.name).join(", ")}</span>
         </div>
         <p class="detail-overview text-muted">${movie.overview}</p>
-        <a href="booking.html?movieId=${movie.id}" class="btn btn-primary">Book Tickets</a>
+        <a href="booking.html?id=${movie.id}" class="btn btn-primary">Book Tickets</a>
       </div>
     </div>
 
