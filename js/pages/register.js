@@ -32,6 +32,16 @@ async function handleRegister() {
     return;
   }
 
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    showError("Please enter a valid email address.");
+    return;
+  }
+
+  if (name.length < 2) {
+    showError("Please enter your full name.");
+    return;
+  }
   registerBtn.disabled = true;
   registerBtn.textContent = "Creating account…";
 

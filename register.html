@@ -15,21 +15,33 @@
       <div class="auth-card card">
         <h1 class="font-display">Create Account</h1>
 
-        <p id="auth-error" class="auth-error" hidden></p>
-
         <div class="form-group">
           <label for="name-input">Name</label>
-          <input type="text" id="name-input" required />
+          <input type="text" id="name-input" required placeholder="John Doe" />
+          <p class="field-error" id="name-error" hidden></p>
         </div>
 
         <div class="form-group">
           <label for="email-input">Email</label>
-          <input type="email" id="email-input" required />
+          <input
+            type="email"
+            id="email-input"
+            required
+            placeholder="johndoe@example.com"
+          />
+          <p class="field-error" id="email-error" hidden></p>
         </div>
 
         <div class="form-group">
           <label for="password-input">Password</label>
-          <input type="password" id="password-input" required minlength="6" />
+          <input
+            type="password"
+            id="password-input"
+            required
+            minlength="6"
+            placeholder="••••••••"
+          />
+          <p class="field-error" id="password-error" hidden></p>
         </div>
 
         <div class="form-group">
@@ -39,8 +51,12 @@
             id="confirm-password-input"
             required
             minlength="6"
+            placeholder="••••••••"
           />
+          <p class="field-error" id="confirm-password-error" hidden></p>
         </div>
+
+        <p id="auth-error" class="auth-error" hidden></p>
 
         <button id="register-btn" class="btn btn-primary auth-submit">
           Create Account
