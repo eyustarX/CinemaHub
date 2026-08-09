@@ -35,7 +35,7 @@ export function backdropUrl(path, size = "w1280") {
 
 export async function getGenres() {
   const data = await tmdbFetch("/genre/movie/list");
-  return data.genres; // [{ id, name }, ...]
+  return data.genres;
 }
 
 export async function discoverMovies({
