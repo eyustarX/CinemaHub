@@ -32,3 +32,24 @@ export function posterUrl(path, size = "w500") {
 export function backdropUrl(path, size = "w1280") {
   return path ? `${IMAGE_BASE_URL}/${size}${path}` : null;
 }
+
+export async function getGenres() {
+  const data = await tmdbFetch("/genre/movie/list");
+  return data.genres; // [{ id, name }, ...]
+}
+
+export async function discoverMovies({
+  page = 1,
+  genreId = "",
+  sortBy = "popularity.desc",
+} = {}) {
+  const params = { page, sort_by: sortBy };
+  if (genreId) params.with_genres = genreId;
+  const data = await tmdbFetch("/discover/movie", params);
+  return { results: data.results, totalPages: data.total_pages };
+}
+
+export async function searchMovies(query, page = 1) {
+  const data = await tmdbFetch("/search/movie", { query, page });
+  return { results: data.results, totalPages: data.total_pages };
+}
