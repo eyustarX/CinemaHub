@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Tickets — CinemaHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="navbar-logo">CinemaHub</a>
+      <div class="navbar-links">
+        <a href="movies.html">Movies</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="login.html" id="navbar-auth-link">Log In</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div id="movie-summary" class="booking-movie-summary">
+        <p class="state-message">Loading…</p>
+      </div>
+
+      <section class="booking-step">
+        <h2 class="font-display section-title">1. Choose Cinema</h2>
+        <div class="option-pills" id="cinema-options"></div>
+      </section>
+
+      <section class="booking-step" id="date-step" hidden>
+        <h2 class="font-display section-title">2. Choose Date</h2>
+        <div class="option-pills" id="date-options"></div>
+      </section>
+
+      <section class="booking-step" id="showtime-step" hidden>
+        <h2 class="font-display section-title">3. Choose Showtime</h2>
+        <div class="option-pills" id="showtime-options"></div>
+      </section>
+
+      <div class="booking-continue-wrap">
+        <button id="continue-btn" class="btn btn-primary" disabled>
+          Continue to Seats
+        </button>
+      </div>
+    </main>
+
+    <script type="module" src="js/pages/booking.js"></script>
+  </body>
+</html>

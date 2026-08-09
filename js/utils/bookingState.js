@@ -5,7 +5,6 @@ export function getBookingState() {
   return raw ? JSON.parse(raw) : {};
 }
 
-/** Merges new fields into the existing booking state without wiping what's already there. */
 export function setBookingState(partial) {
   const next = { ...getBookingState(), ...partial };
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(next));
