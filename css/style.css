@@ -491,21 +491,30 @@ a {
 .option-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
 .option-pill {
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius);
+  padding: 12px 18px;
+  border-radius: 10px;
   font-size: 0.9375rem;
   text-align: left;
+  min-width: 190px;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.2s ease;
+  text-align: center;
+  cursor: pointer;
 }
 
 .option-pill:hover {
   border-color: var(--accent-dim);
+  transform: translateY(-2px);
 }
 
 .option-pill.is-selected {
@@ -519,9 +528,8 @@ a {
   display: block;
   font-size: 0.75rem;
   opacity: 0.75;
-  margin-top: 2px;
+  margin-top: 5px;
 }
-
 .booking-continue-wrap {
   display: flex;
   justify-content: flex-end;
@@ -667,4 +675,11 @@ a {
   border-top: 1px solid var(--border);
   padding-top: var(--space-4);
   margin-top: var(--space-4);
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
 }
