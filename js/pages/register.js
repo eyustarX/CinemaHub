@@ -5,6 +5,7 @@ const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
 const registerBtn = document.getElementById("register-btn");
 const errorEl = document.getElementById("auth-error");
+const confirmPasswordInput = document.getElementById("confirm-password-input");
 
 registerBtn.addEventListener("click", handleRegister);
 
@@ -14,6 +15,7 @@ async function handleRegister() {
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
   const password = passwordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
 
   if (!name || !email || !password) {
     showError("Please fill in every field.");
@@ -22,6 +24,11 @@ async function handleRegister() {
 
   if (password.length < 6) {
     showError("Password must be at least 6 characters.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    showError("Passwords do not match.");
     return;
   }
 
