@@ -732,7 +732,6 @@ a {
   color: var(--text-muted);
 }
 
-/* ---- Confirmation / ticket stub ---- */
 .ticket {
   max-width: 480px;
   margin: var(--space-8) auto;
