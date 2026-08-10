@@ -23,3 +23,20 @@ function handleLogoutClick(event) {
 }
 
 renderAuthLink();
+
+const toggleBtn = document.getElementById("navbar-toggle");
+const navLinks = document.getElementById("navbar-links");
+
+if (toggleBtn && navLinks) {
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("is-open");
+    toggleBtn.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+    if (e.matches) {
+      navLinks.classList.remove("is-open");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+}
