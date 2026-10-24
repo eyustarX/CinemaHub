@@ -1,0 +1,21 @@
+{
+  "name": "cinemahub",
+  "version": "1.0.0",
+  "description": "CinemaHub - Next-Gen Movie Ticketing & Cinema Experience Web Application",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "backend": "node backend/server.js"
+  },
+  "keywords": [
+    "cinema",
+    "movie-booking",
+    "ticketing",
+    "seat-selection",
+    "express",
+    "mysql"
+  ],
+  "author": "",
+  "license": "ISC"
+}

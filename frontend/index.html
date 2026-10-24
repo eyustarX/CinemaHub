@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CinemaHub - Next-Gen Movie Ticketing & Cinema Experience</title>
+  <meta name="description" content="Browse movies, select VIP & standard seats, book tickets online, and manage cinema listings with CinemaHub.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar" id="top-navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo" id="brand-logo">
+        <i class="fa-solid fa-film logo-icon"></i>
+        <span>Cinema<span class="highlight">Hub</span></span>
+      </a>
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="search-input" placeholder="Search movies, genres, actors...">
+        <button class="clear-search-btn" id="clear-search-btn" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#hero-section" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#catalog-section" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Movies</a>
+        <a href="#" class="nav-link" id="my-tickets-nav-btn"><i class="fa-solid fa-ticket"></i> My Tickets</a>
+      </nav>
+
+      <div class="user-actions">
+        <!-- Guest View -->
+        <div id="guest-actions" class="guest-group">
+          <button class="btn btn-secondary btn-sm" id="open-login-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </button>
+          <button class="btn btn-primary btn-sm" id="open-register-btn">
+            <i class="fa-solid fa-user-plus"></i> Sign Up
+          </button>
+        </div>
+
+        <!-- Logged In View -->
+        <div id="user-profile-group" class="user-profile-group" style="display: none;">
+          <button class="btn btn-admin-badge" id="admin-panel-btn" style="display: none;">
+            <i class="fa-solid fa-user-shield"></i> Admin Panel
+          </button>
+          <div class="profile-dropdown-wrapper">
+            <button class="profile-btn" id="profile-menu-toggle">
+              <div class="avatar" id="user-avatar">U</div>
+              <span class="user-name-display" id="user-name-display">User</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu" id="profile-dropdown">
+              <div class="dropdown-header">
+                <span class="dropdown-user-name" id="dropdown-user-name">User Name</span>
+                <span class="dropdown-user-email" id="dropdown-user-email">user@example.com</span>
+                <span class="role-pill" id="dropdown-user-role">User</span>
+              </div>
+              <hr>
+              <button class="dropdown-item" id="dropdown-tickets-btn">
+                <i class="fa-solid fa-ticket"></i> My Tickets
+              </button>
+              <button class="dropdown-item" id="dropdown-admin-btn" style="display: none;">
+                <i class="fa-solid fa-sliders"></i> Admin Dashboard
+              </button>
+              <hr>
+              <button class="dropdown-item danger" id="logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section Showcase -->
+  <section class="hero-section" id="hero-section">
+    <div class="hero-backdrop" id="hero-backdrop"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-fire"></i> FEATURED BLOCKBUSTER</div>
+      <h1 class="hero-title" id="hero-title">Interstellar Odyssey</h1>
+      
+      <div class="hero-meta">
+        <span class="meta-item rating-badge"><i class="fa-solid fa-star"></i> <span id="hero-rating">8.8</span></span>
+        <span class="meta-item" id="hero-genre">Sci-Fi / Adventure</span>
+        <span class="meta-item" id="hero-duration"><i class="fa-regular fa-clock"></i> 2h 49m</span>
+        <span class="meta-item age-badge" id="hero-age">PG-13</span>
+      </div>
+
+      <p class="hero-description" id="hero-description">
+        When Earth becomes uninhabitable, a team of ex-NASA pilots and researchers undertake a desperate mission across the cosmos through a newly discovered wormhole to locate humanity's next home.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" id="hero-book-btn">
+          <i class="fa-solid fa-ticket"></i> Quick Book Ticket
+        </button>
+        <button class="btn btn-glass btn-lg" id="hero-trailer-btn">
+          <i class="fa-solid fa-circle-play"></i> Watch Trailer
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Main Section -->
+  <main class="catalog-section" id="catalog-section">
+    <div class="section-container">
+      
+      <div class="catalog-header">
+        <div class="header-text">
+          <h2 class="section-title">Now Showing in Theaters</h2>
+          <p class="section-subtitle">Select your favorite movie, pick your seats, and enjoy the show.</p>
+        </div>
+
+        <!-- Controls: Filters & Sort -->
+        <div class="catalog-controls">
+          <div class="filter-pills" id="genre-filters">
+            <button class="filter-pill active" data-genre="all">All Genres</button>
+            <button class="filter-pill" data-genre="Action">Action</button>
+            <button class="filter-pill" data-genre="Sci-Fi">Sci-Fi</button>
+            <button class="filter-pill" data-genre="Drama">Drama</button>
+            <button class="filter-pill" data-genre="Animation">Animation</button>
+            <button class="filter-pill" data-genre="Comedy">Comedy</button>
+          </div>
+
+          <div class="sort-selector">
+            <label for="sort-select"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort By:</label>
+            <select id="sort-select">
+              <option value="rating-desc">Highest Rated</option>
+              <option value="release-newest">Latest Release</option>
+              <option value="price-asc">Lowest Price</option>
+              <option value="title-asc">Title (A-Z)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Movie Grid Container -->
+      <div class="movie-grid" id="movie-grid">
+        <!-- Dynamic Movie Cards Rendered via JS -->
+      </div>
+
+      <!-- Empty State View -->
+      <div class="empty-catalog-state" id="empty-catalog-state" style="display: none;">
+        <i class="fa-solid fa-film-slash empty-icon"></i>
+        <h3>No movies match your criteria</h3>
+        <p>Try searching for a different title or select "All Genres".</p>
+        <button class="btn btn-secondary" id="reset-filters-btn">Reset Filters</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-film logo-icon"></i>
+          <span>Cinema<span class="highlight">Hub</span></span>
+        </div>
+        <p>Premium online cinema ticket booking platform. Immersive seat selection and instant digital pass.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#hero-section">Featured Movie</a>
+        <a href="#catalog-section">All Movies</a>
+        <a href="#" id="footer-tickets-link">My Bookings</a>
+      </div>
+      <div class="footer-info">
+        <h4>Cinema Experience</h4>
+        <p><i class="fa-solid fa-location-dot"></i> 742 Evergreen Terrace, Cinema City</p>
+        <p><i class="fa-solid fa-headset"></i> Support: +1 (800) CINEMA-HUB</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CinemaHub. All rights reserved. Crafting extraordinary theater moments.</p>
+    </div>
+  </footer>
+
+
+  <!-- MODALS SECTION -->
+
+  <!-- 1. Auth Modal (Login / Register) -->
+  <div class="modal-overlay" id="auth-modal" style="display: none;">
+    <div class="modal-card auth-card">
+      <button class="modal-close" id="auth-modal-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login-btn">Log In</button>
+        <button class="auth-tab" id="tab-register-btn">Create Account</button>
+      </div>
+
+      <!-- Quick Demo Account Fill Banner -->
+      <div class="demo-acc-banner">
+        <span>⚡ Quick Fill:</span>
+        <button class="btn-chip" id="demo-fill-user"><i class="fa-solid fa-user"></i> Test User</button>
+        <button class="btn-chip" id="demo-fill-admin"><i class="fa-solid fa-user-shield"></i> Admin</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+          <input type="email" id="login-email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
+          <input type="password" id="login-password" required placeholder="••••••••">
+        </div>
+        <div class="form-alert error" id="login-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary btn-block">Log In to CinemaHub</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form" style="display: none;">
+        <div class="form-group">
+          <label for="reg-name"><i class="fa-solid fa-user"></i> Full Name</label>
+          <input type="text" id="reg-name" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="reg-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+          <input type="email" id="reg-email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="reg-password"><i class="fa-solid fa-lock"></i> Password</label>
+          <input type="password" id="reg-password" required minlength="6" placeholder="At least 6 characters">
+        </div>
+        <div class="form-group">
+          <label for="reg-role"><i class="fa-solid fa-id-badge"></i> Account Type</label>
+          <select id="reg-role">
+            <option value="user">Standard User (Book tickets)</option>
+            <option value="admin">Administrator (Manage movies)</option>
+          </select>
+        </div>
+        <div class="form-alert error" id="reg-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- 2. Movie Detail & Showtime Modal -->
+  <div class="modal-overlay" id="detail-modal" style="display: none;">
+    <div class="modal-card detail-card">
+      <button class="modal-close" id="detail-modal-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="detail-layout">
+        <div class="detail-poster-wrapper">
+          <img src="" id="detail-poster" alt="Movie Poster">
+          <button class="btn btn-glass btn-block mt-3" id="detail-trailer-btn">
+            <i class="fa-solid fa-circle-play"></i> Watch Trailer
+          </button>
+        </div>
+
+        <div class="detail-info-wrapper">
+          <div class="detail-genres" id="detail-genres">
+            <!-- Genre pills -->
+          </div>
+          <h2 class="detail-title" id="detail-title">Movie Title</h2>
+
+          <div class="detail-meta">
+            <span><i class="fa-solid fa-star text-gold"></i> <strong id="detail-rating">8.5</strong> / 10</span>
+            <span><i class="fa-regular fa-clock"></i> <span id="detail-duration">120 mins</span></span>
+            <span class="age-badge" id="detail-age">PG-13</span>
+            <span><i class="fa-solid fa-tag"></i> $<span id="detail-price">12.00</span> / seat</span>
+          </div>
+
+          <p class="detail-description" id="detail-description">
+            Detailed movie synopsis goes here...
+          </p>
+
+          <div class="detail-cast">
+            <h4><i class="fa-solid fa-users"></i> Starring Cast</h4>
+            <p id="detail-cast-list">Actor 1, Actor 2, Actor 3</p>
+          </div>
+
+          <hr class="divider">
+
+          <!-- Showtime Picker Section -->
+          <div class="showtime-selection-area">
+            <h3><i class="fa-solid fa-calendar-day"></i> Select Showtime & Date</h3>
+            
+            <div class="date-tabs" id="showtime-date-tabs">
+              <!-- Rendered via JS: Today, Tomorrow, Day 3 -->
+            </div>
+
+            <div class="time-slots" id="showtime-slots">
+              <!-- Time slot pills rendered via JS -->
+            </div>
+          </div>
+
+          <div class="detail-footer">
+            <button class="btn btn-primary btn-lg btn-block" id="proceed-to-seats-btn" disabled>
+              <i class="fa-solid fa-couch"></i> Select Seats for <span id="selected-slot-preview">Select Showtime</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3. Interactive Seat Selection Modal -->
+  <div class="modal-overlay" id="seat-modal" style="display: none;">
+    <div class="modal-card seat-card">
+      <button class="modal-close" id="seat-modal-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="seat-modal-header">
+        <div>
+          <h2 id="seat-movie-title">Movie Title</h2>
+          <p class="seat-showtime-meta" id="seat-showtime-meta">Date • Time • Screen 1</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="seat-back-btn">
+          <i class="fa-solid fa-arrow-left"></i> Change Showtime
+        </button>
+      </div>
+
+      <!-- Curved Screen Visualization -->
+      <div class="cinema-screen-container">
+        <div class="cinema-screen"></div>
+        <div class="screen-light-glow"></div>
+        <span class="screen-label">CINEMA SCREEN THIS WAY</span>
+      </div>
+
+      <!-- Seating Grid -->
+      <div class="seat-grid-wrapper">
+        <div class="seat-grid" id="seat-grid">
+          <!-- Dynamic 6 Rows A-F, 8 Seats per Row rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Seat Legend -->
+      <div class="seat-legend">
+        <div class="legend-item"><span class="seat-sample available"></span> Available ($<span id="price-sample-std">12</span>)</div>
+        <div class="legend-item"><span class="seat-sample vip"></span> VIP ($<span id="price-sample-vip">18</span>)</div>
+        <div class="legend-item"><span class="seat-sample selected"></span> Selected</div>
+        <div class="legend-item"><span class="seat-sample occupied"></span> Occupied</div>
+      </div>
+
+      <!-- Booking Checkout Bar -->
+      <div class="seat-summary-bar">
+        <div class="summary-info">
+          <div class="selected-seats-text">
+            <span>Selected Seats (<span id="seat-count">0</span>):</span>
+            <strong id="selected-seats-list">None</strong>
+          </div>
+          <div class="total-price-text">
+            Total: <span class="currency">$</span><strong id="seat-total-price">0.00</strong>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg" id="confirm-seats-btn" disabled>
+          <i class="fa-solid fa-credit-card"></i> Confirm & Book Tickets
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 4. E-Ticket Confirmation Modal -->
+  <div class="modal-overlay" id="ticket-modal" style="display: none;">
+    <div class="modal-card ticket-card">
+      <button class="modal-close" id="ticket-modal-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="ticket-header-banner">
+        <i class="fa-solid fa-circle-check success-icon"></i>
+        <h2>Booking Confirmed!</h2>
+        <p>Your seats are reserved. Here is your digital e-ticket pass.</p>
+      </div>
+
+      <div class="eticket-stub" id="eticket-stub">
+        <div class="ticket-left">
+          <div class="ticket-brand"><i class="fa-solid fa-film"></i> CinemaHub Pass</div>
+          <h3 class="ticket-movie-title" id="tkt-movie-title">Movie Title</h3>
+          
+          <div class="ticket-grid">
+            <div class="tkt-item">
+              <span class="label">Date & Time</span>
+              <span class="value" id="tkt-datetime">Aug 6, 2026 • 7:00 PM</span>
+            </div>
+            <div class="tkt-item">
+              <span class="label">Auditorium</span>
+              <span class="value" id="tkt-screen">Screen 1 (IMAX)</span>
+            </div>
+            <div class="tkt-item">
+              <span class="label">Seats</span>
+              <span class="value highlight-seats" id="tkt-seats">A4, A5</span>
+            </div>
+            <div class="tkt-item">
+              <span class="label">Total Paid</span>
+              <span class="value" id="tkt-price">$24.00</span>
+            </div>
+          </div>
+
+          <div class="tkt-user-info">
+            <span>Holder: <strong id="tkt-holder-name">John Doe</strong></span>
+            <span>Booking Ref: <code id="tkt-ref">#CH-98213</code></span>
+          </div>
+        </div>
+
+        <div class="ticket-right">
+          <div class="qr-container" id="tkt-qr-code">
+            <!-- Rendered SVG QR code snippet -->
+          </div>
+          <span class="scan-note">SCAN AT ENTRY</span>
+        </div>
+      </div>
+
+      <div class="ticket-actions">
+        <button class="btn btn-secondary" id="print-ticket-btn">
+          <i class="fa-solid fa-print"></i> Print / Save Ticket
+        </button>
+        <button class="btn btn-primary" id="close-ticket-btn">
+          Done & View All Tickets
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 5. User Booking History Modal ("My Tickets") -->
+  <div class="modal-overlay" id="my-tickets-modal" style="display: none;">
+    <div class="modal-card tickets-history-card">
+      <button class="modal-close" id="my-tickets-modal-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="modal-header-simple">
+        <h2><i class="fa-solid fa-ticket text-rose"></i> My Booking History</h2>
+        <p>View all your upcoming show tickets and past reservations.</p>
+      </div>
+
+      <div class="tickets-list" id="tickets-list-container">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+      <div class="empty-tickets-state" id="empty-tickets-state" style="display: none;">
+        <i class="fa-solid fa-ticket-simple empty-icon"></i>
+        <h3>No Tickets Found</h3>
+        <p>You haven't booked any movie tickets yet. Browse our movies catalog to get started!</p>
+        <button class="btn btn-primary" id="browse-from-tickets-btn">Browse Movies</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6. Admin Dashboard Modal -->
+  <div class="modal-overlay" id="admin-modal" style="display: none;">
+    <div class="modal-card admin-card">
+      <button class="modal-close" id="admin-modal-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="admin-header">
+        <div>
+          <h2><i class="fa-solid fa-user-shield text-rose"></i> CinemaHub Admin Control Panel</h2>
+          <p>Manage cinema listings, add new movies, remove expired shows, and view platform metrics.</p>
+        </div>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="admin-stats-row">
+        <div class="stat-card">
+          <div class="stat-icon bg-rose"><i class="fa-solid fa-clapperboard"></i></div>
+          <div>
+            <span class="stat-label">Active Movies</span>
+            <h3 class="stat-value" id="admin-stat-movies">6</h3>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon bg-indigo"><i class="fa-solid fa-ticket"></i></div>
+          <div>
+            <span class="stat-label">Tickets Sold</span>
+            <h3 class="stat-value" id="admin-stat-tickets">0</h3>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon bg-green"><i class="fa-solid fa-sack-dollar"></i></div>
+          <div>
+            <span class="stat-label">Total Revenue</span>
+            <h3 class="stat-value" id="admin-stat-revenue">$0.00</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-tab-container">
+        <div class="admin-tabs">
+          <button class="admin-tab active" id="admin-tab-add">Add New Movie</button>
+          <button class="admin-tab" id="admin-tab-manage">Manage Movie Listings</button>
+        </div>
+
+        <!-- Add Movie Form Tab -->
+        <form id="admin-add-movie-form" class="admin-form">
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="adm-title">Movie Title *</label>
+              <input type="text" id="adm-title" required placeholder="e.g. Dune: Part Two">
+            </div>
+            <div class="form-group">
+              <label for="adm-genre">Genre *</label>
+              <select id="adm-genre" required>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Animation">Animation</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Horror">Horror</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row grid-3">
+            <div class="form-group">
+              <label for="adm-duration">Duration (minutes) *</label>
+              <input type="number" id="adm-duration" required min="30" max="300" value="120">
+            </div>
+            <div class="form-group">
+              <label for="adm-rating">Rating (1.0 - 10.0) *</label>
+              <input type="number" id="adm-rating" step="0.1" required min="1" max="10" value="8.5">
+            </div>
+            <div class="form-group">
+              <label for="adm-price">Base Seat Price ($) *</label>
+              <input type="number" id="adm-price" step="0.5" required min="5" max="50" value="14.00">
+            </div>
+          </div>
+
+          <div class="form-row grid-2">
+            <div class="form-group">
+              <label for="adm-poster">Poster Image URL</label>
+              <input type="url" id="adm-poster" placeholder="https://images.unsplash.com/...">
+              <small class="form-hint">Leave blank to auto-assign a cinema poster image.</small>
+            </div>
+            <div class="form-group">
+              <label for="adm-backdrop">Backdrop Image URL</label>
+              <input type="url" id="adm-backdrop" placeholder="https://images.unsplash.com/...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="adm-description">Synopsis / Description *</label>
+            <textarea id="adm-description" rows="3" required placeholder="Brief movie storyline overview..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="adm-cast">Starring Cast</label>
+            <input type="text" id="adm-cast" placeholder="Actor 1, Actor 2, Actor 3">
+          </div>
+
+          <div class="form-alert success" id="admin-add-success" style="display: none;"></div>
+          <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-plus"></i> Add Movie to Cinema List</button>
+        </form>
+
+        <!-- Manage Movies List Tab -->
+        <div id="admin-manage-movies-list" class="admin-manage-list" style="display: none;">
+          <!-- Rendered list of movies with Delete button -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trailer Preview Player Modal -->
+  <div class="modal-overlay" id="trailer-modal" style="display: none;">
+    <div class="modal-card trailer-card">
+      <button class="modal-close" id="trailer-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="video-container">
+        <iframe id="trailer-iframe" src="" title="Movie Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
